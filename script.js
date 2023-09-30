@@ -28,32 +28,32 @@ function Login() {
     }
 
 // ==================send mail=============
-function sendMail() {
-    var params = {
-      name: document.getElementById("name").value,
-      name: document.getElementById("email").value,
-      name: document.getElementById("subject").value,
-      name: document.getElementById("message").value,
-    };
+// function sendMail() {
+//     var params = {
+//       name: document.getElementById("name").value,
+//       name: document.getElementById("email").value,
+//       name: document.getElementById("subject").value,
+//       name: document.getElementById("message").value,
+//     };
   
   
-    const serviceID = "service_q7y8nca";
-    const templateID = "template_8pn25k6";
+//     const serviceID = "service_q7y8nca";
+//     const templateID = "template_8pn25k6";
   
-    email.js.send(serviceID, templateID, params)
-      .then(
-        res => {
-          document.getElementById("name").value = "";
-          document.getElementById("email").value = "";
-          document.getElementById("subject").value = "";
-          document.getElementById("message").value = "";
-          console.log(res);
-          alert("your message sent successfully");
-        }
-      )
+//     email.js.send(serviceID, templateID, params)
+//       .then(
+//         res => {
+//           document.getElementById("name").value = "";
+//           document.getElementById("email").value = "";
+//           document.getElementById("subject").value = "";
+//           document.getElementById("message").value = "";
+//           console.log(res);
+//           alert("your message sent successfully");
+//         }
+//       )
   
-      .catch((err) => console.log(err));
-  }
+//       .catch((err) => console.log(err));
+//   }
 
 
 // filterObjects("all");
