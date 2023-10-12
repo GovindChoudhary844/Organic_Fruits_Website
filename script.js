@@ -1,3 +1,16 @@
+$(document).ready(function () {
+    $('.filter-button').click(function () {
+      var value = $(this).attr('data-filter');
+      if (value == "all") {
+        $('.product-card').show('1000');
+      } else {
+        $('.product-card').not('.' + value).hide('3000');
+        $('.product-card').filter('.' + value).show('3000');
+      }
+    });
+  });
+// ============== Product filter End =============
+
 function Login() {
     var Name, Email, Pass;
     Name = document.getElementById("Log-Name").value;
