@@ -25,6 +25,7 @@ body {
     transition: all 0.5s;
     background-color: black;
 }
+
 .offcanvas {
     border-right: 3px solid;
     border-color: orange;
@@ -155,6 +156,10 @@ h1 {
     background-color: green;
 }
 
+/* ============= Product Carousel =============== */
+
+
+/* ============= Product =============== */
 .image-zoom {
     overflow: hidden;
 }
@@ -183,6 +188,7 @@ h1 {
 
 .card2-footer:hover {
     color: #14d721;
+    cursor: pointer;
 }
 
 .Firm-main {
@@ -417,11 +423,12 @@ h1 {
         -moz-box-shadow: 10px 8px 11px 0px rgba(0, 0, 0, 0.57);
     }
 
-    .about-top h1{
+    .about-top h1 {
         font-size: 65px;
         margin-top: -80px;
         margin-left: -40px;
     }
+
     /* imagestrowberry */
     .imagestrowberry {
         height: 15rem;
@@ -460,6 +467,10 @@ h1 {
 
     .card-size {
         width: 100%;
+    }
+
+    .products {
+        margin-top: 80px;
     }
 
     /* ==================footer======================== */
@@ -536,10 +547,11 @@ h1 {
 
 /* s small devices (tablets, 576px and up) */
 @media (min-width: 768px) and (max-width: 991.98px) {
-    
+
     .rev-box {
         padding: 10px;
     }
+
     .blog-box {
         padding: 10px;
     }

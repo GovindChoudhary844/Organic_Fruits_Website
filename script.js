@@ -1,106 +1,112 @@
-$(document).ready(function () {
-    $('.filter-button').click(function () {
-      var value = $(this).attr('data-filter');
-      if (value == "all") {
-        $('.product-card').show('1000');
-      } else {
-        $('.product-card').not('.' + value).hide('3000');
-        $('.product-card').filter('.' + value).show('3000');
-      }
-    });
-  });
-// ============== Product filter End =============
+// ============== Products carousel =============
 
+// ============== Product filter =============
+$(document).ready(function () {
+  $('.filter-button').click(function () {
+    var value = $(this).attr('data-filter');
+    if (value == "all") {
+      $('.product-card').show('1000');
+    } else {
+      $('.product-card').not('.' + value).hide('3000');
+      $('.product-card').filter('.' + value).show('3000');
+    }
+  });
+});
+
+// ============== Add to Cart =============
+let cartCount = 0;
+const cartItems = [];
+
+function addToCart(event, productName, price) {
+    cartCount++;
+    document.getElementById('cartCount').innerHTML = cartCount;
+
+    const productCard = event.target.closest('.product-card');
+    const productImage = productCard.querySelector('.product-image').src;
+    const productPrice = parseFloat(productCard.querySelector('.Product-price').innerText.replace('Price: $', ''));
+    const actualProductName = productCard.querySelector('.Product-name').innerText; // Fetch the correct product name
+
+    cartItems.push({ name: actualProductName, price: productPrice, quantity: 1, image: productImage });
+    renderCartItems();
+}
+
+function incrementQuantity(index) {
+    cartItems[index].quantity++;
+    cartItems[index].price = cartItems[index].quantity * cartItems[index].price / (cartItems[index].quantity - 1);
+    renderCartItems();
+}
+
+function decrementQuantity(index) {
+    if (cartItems[index].quantity > 1) {
+        cartItems[index].quantity--;
+        cartItems[index].price = cartItems[index].quantity * cartItems[index].price / (cartItems[index].quantity + 1);
+        renderCartItems();
+    }
+}
+
+function renderCartItems() {
+    const cartItemsList = document.querySelector('.cart-items');
+    cartItemsList.innerHTML = '';
+    let total = 0;
+    cartItems.forEach((item, index) => {
+        const listItem = document.createElement('li');
+        listItem.className = 'list-group-item d-flex align-items-center my-2 p-3';
+
+        const productImage = document.createElement('img');
+        productImage.src = item.image;
+        productImage.style.width = '50px';
+        productImage.style.height = '50px';
+        listItem.appendChild(productImage);
+
+        const nameAndPrice = document.createElement('div');
+        nameAndPrice.innerHTML = `<span class="Product-name">${item.name}</span> - $<span class="Product-price">${item.price.toFixed(2)}</span>`;
+        nameAndPrice.classList.add('ms-3');
+        listItem.appendChild(nameAndPrice);
+
+        const quantityDiv = document.createElement('div');
+        quantityDiv.classList.add('ms-auto', 'd-flex', 'align-items-center');
+
+        const decrementButton = document.createElement('button');
+        decrementButton.textContent = '-';
+        decrementButton.classList.add('btn', 'btn-sm', 'btn-outline-primary', 'me-2');
+        decrementButton.onclick = () => decrementQuantity(index);
+
+        const quantityText = document.createElement('span');
+        quantityText.textContent = item.quantity;
+        quantityText.classList.add('me-2', 'fw-bold');
+
+        const incrementButton = document.createElement('button');
+        incrementButton.textContent = '+';
+        incrementButton.classList.add('btn', 'btn-sm', 'btn-outline-primary');
+        incrementButton.onclick = () => incrementQuantity(index);
+
+        quantityDiv.appendChild(decrementButton);
+        quantityDiv.appendChild(quantityText);
+        quantityDiv.appendChild(incrementButton);
+        listItem.appendChild(quantityDiv);
+        cartItemsList.appendChild(listItem);
+        total += item.price;
+    });
+    const totalPrice = document.querySelector('.total-price');
+    totalPrice.innerHTML = `<strong>Total: $${total.toFixed(2)}</strong>`;
+}
+
+
+
+// ============== Login Auth =============
 function Login() {
-    var Name, Email, Pass;
-    Name = document.getElementById("Log-Name").value;
-    Email = document.getElementById("Log-Email").value;
-    Pass = document.getElementById("Log-Name").value;
-    if (Name == "Govind Choudhary" && Email == "govindchoudhary844@gmail.com" && Pass == "Aryan844@") {
-        alert("Login Successfull")
-        window.open("index.html")
-    }
-    else {
-        alert("User Not Found")
-    }
+  var Name, Email, Pass;
+  Name = document.getElementById("Log-Name").value;
+  Email = document.getElementById("Log-Email").value;
+  Pass = document.getElementById("Log-Name").value;
+  if (Name == "Govind Choudhary" && Email == "govindchoudhary844@gmail.com" && Pass == "Aryan844@") {
+    alert("Login Successfull")
+    window.open("index.html")
+  }
+  else {
+    alert("User Not Found")
+  }
 
 }
-// =========================== Scroll Effect =======================
-    function Login() {
-      var Name, Email, Pass;
-    Name = document.getElementById("Log-Name").value;
-    Email = document.getElementById("Log-Email").value;
-    Pass = document.getElementById("Log-Name").value;
-    if (Name == "Govind Choudhary" && Email == "govindchoudhary844@gmail.com" && Pass == "Aryan844@") {
-        alert("Login Successfull")
-        window.open("index.html")
-      }
-    else {
-        alert("User Not Found")
-    }
-    }
-
-// ==================send mail=============
-// function sendMail() {
-//     var params = {
-//       name: document.getElementById("name").value,
-//       name: document.getElementById("email").value,
-//       name: document.getElementById("subject").value,
-//       name: document.getElementById("message").value,
-//     };
-  
-  
-//     const serviceID = "service_q7y8nca";
-//     const templateID = "template_8pn25k6";
-  
-//     email.js.send(serviceID, templateID, params)
-//       .then(
-//         res => {
-//           document.getElementById("name").value = "";
-//           document.getElementById("email").value = "";
-//           document.getElementById("subject").value = "";
-//           document.getElementById("message").value = "";
-//           console.log(res);
-//           alert("your message sent successfully");
-//         }
-//       )
-  
-//       .catch((err) => console.log(err));
-//   }
 
 
-// filterObjects("all");
-
-// function filterObjects(c) {
-//     var x, i;
-//     x = document.getElementsByClassName("card2");
-//     if (c == 'all') c = " ";
-//     for (i = 0; i < x.length; i++) {
-//         removeClass(x[i], "show");
-//         if (x[i].className.indexOf(c) > -1) addClass([i], "show")
-//     }
-// }
-
-// function addClass(element, name) {
-//     var i, arr1, arr2;
-//     arr1 = element.className.split(" ");;
-//     arr2 = name.split(" ")
-//     for (i = 0; i < arr2.length; i++) {
-//         if (arr1.indexOf(arr2[i]) == -1) {
-//             element.className += " " + arr2[i];
-//         }
-//     }
-// }
-
-
-// function removeClass(element, name) {
-//     var i, arr1, arr2;
-//     arr1 = element.className.split(" ");;
-//     arr2 = name.split("")
-//     for (i = 0; i < arr2.length; i++) {
-//         if (arr1.indexOf(arr2[i]) == -1) {
-//             arr1.splice(arr1.indexOf(arr2[i]), 1);
-//         }
-//     }
-//     element.className = arr1.join(" ");
-// }

@@ -52,7 +52,7 @@
           <div class="offcanvas-body">
             <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                <a class="nav-link" aria-current="page" href="index.html">Home</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="About.html">About</a>
@@ -82,14 +82,34 @@
               <button class="btn btn-light btn-sm" data-bs-toggle="modal" data-bs-target="#Login">
                 <i class="fa-solid fa-user" style="color: #000000;"></i>
               </button>
-              <button class="btn btn-light btn-sm">
+              <button class="btn btn-light btn-sm" id="cartIcon" data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">
                 <i class="fa-solid fa-bag-shopping" style="color: #000000;"></i>
+                <span class="position-absolute top-50 badge rounded-pill bg-primary" id="cartCount">0</span>
               </button>
             </div>
           </div>
         </div>
       </div>
     </nav>
+
+    <!-- ================= cart offcancas =============== -->
+    <div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions"
+      aria-labelledby="offcanvasWithBothOptionsLabel">
+      <div class="offcanvas-header text-bg-dark p-4">
+        <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Your Cart</h5>
+        <button type="button" class="btn btn-dark btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <ul class="list-group cart-items">
+          <!-- Cart items will appear here -->
+        </ul>
+      </div>
+      <div class="text-bg-dark p-3">
+        <p>Total: <span class="total-price">$0.00</span></p>
+
+      </div>
+    </div>
   </section>
   <!-- Login The Modal -->
   <div class="modal" id="Login">
@@ -179,21 +199,23 @@
     </div>
   </section>
 
- <!-- ------------Our Products-------------- -->
- <section class="Our-Products bg-light pb-3" id="Our-Products">
-  <!-- Products -->
-  <div class="container mt-5">
-    <div class="container">
-      <div class="col-lg-8 mt-5">
-        <div class="row heading-main">
-          <div class="col-lg-7">
-            <h1>Our Products</h1>
-            <p>Tempor ut dolore lorem kasd vero ipsum sit eirmod sit.
-              Ipsum diam justo sed rebum vero dolor duo.</p>
+  <!-- ------------Our Products-------------- -->
+  <section class="Our-Products bg-light pb-3" id="Our-Products">
+    <!-- Products -->
+    <div class="container mt-5 ">
+      <div class="container-fluid">
+        <div class="col-lg-8 mt-5">
+          <div class="row heading-main">
+            <div class="col-lg-7">
+              <h1>Our Products</h1>
+              <p>Tempor ut dolore lorem kasd vero ipsum sit eirmod sit.
+                Ipsum diam justo sed rebum vero dolor duo.</p>
+            </div>
           </div>
         </div>
       </div>
-      <div class="container">
+
+      <div class="container products">
         <div class="row">
           <div class="col-md-12 mb-4">
             <!-- Filter buttons -->
@@ -207,18 +229,19 @@
           <div class="col-md-3 col-sm-6 product-card fruits fresh">
             <div class="card card2 text-center">
               <div class="image-zoom">
-                <img src="Images/Products/banana.jpg" class="w-100">
+                <img src="Images/Products/banana.jpg" class="w-100 product-image">
               </div>
               <div class="card-body">
-                <h5 class="card-title">Banana</h5>
-                <p style="color: #14d721;">$19.00 <del style="color: grey">$29.00</del></p>
-                <a href="#" class="btn btn-outline-success">Read More</a>
+                <h5 class="card-title Product-name">Banana</h5>
+                <p style="color: #14d721;" class="Product-price">Price: $19.00 <del style="color: grey">$29.00</del>
+                </p>
+                <a class="btn btn-outline-success card2-footer add-to-cart mx-2"
+                  onclick="addToCart(event, document.querySelector('.Product-name').innerText, parseFloat(document.querySelector('.Product-price').innerText.replace('Price: $', '')))">
+                  <i class="fa-solid fa-cart-shopping" style="color: #14d721;"></i> Add to Cart</a>
               </div>
               <div class="card-footer">
                 <a class="card2-footer mx-2" href="#">
-                  <i class="fa-solid fa-eye" style="color: #14d721;"></i> View Details</a>
-                <a class="card2-footer mx-2" href="#">
-                  <i class="fa-solid fa-cart-shopping" style="color: #14d721;"></i> Add to Cart</a>
+                  <i class="fa-solid fa-eye text-center" style="color: #14d721;"></i> View Details</a>
               </div>
             </div>
           </div>
@@ -226,18 +249,19 @@
           <div class="col-md-3 col-sm-6 product-card vegetables Fresh">
             <div class="card card2 text-center">
               <div class="image-zoom">
-                <img src="Images/Products/chilly.jpg" class="w-100">
+                <img src="Images/Products/chilly.jpg" class="w-100 product-image">
               </div>
               <div class="card-body">
-                <h5 class="card-title">Chilly</h5>
-                <p style="color: #14d721;">$19.00 <del style="color: grey">$29.00</del></p>
-                <a href="#" class="btn btn-outline-success">Read More</a>
+                <h5 class="card-title Product-name">Chilly</h5>
+                <p style="color: #14d721;" class="Product-price">Price: $19.00 <del style="color: grey">$29.00</del>
+                </p>
+                <a class="btn btn-outline-success card2-footer add-to-cart mx-2"
+                  onclick="addToCart(event, document.querySelector('.Product-name').innerText, parseFloat(document.querySelector('.Product-price').innerText.replace('Price: $', '')))">
+                  <i class="fa-solid fa-cart-shopping" style="color: #14d721;"></i> Add to Cart</a>
               </div>
               <div class="card-footer">
                 <a class="card2-footer mx-2" href="#">
-                  <i class="fa-solid fa-eye" style="color: #14d721;"></i> View Details</a>
-                <a class="card2-footer mx-2" href="#">
-                  <i class="fa-solid fa-cart-shopping" style="color: #14d721;"></i> Add to Cart</a>
+                  <i class="fa-solid fa-eye text-center" style="color: #14d721;"></i> View Details</a>
               </div>
             </div>
           </div>
@@ -245,18 +269,19 @@
           <div class="col-md-3 col-sm-6 product-card Fruit vegetables Fresh">
             <div class="card card2 text-center">
               <div class="image-zoom">
-                <img src="Images/Products/tomato.jpg" class="w-100">
+                <img src="Images/Products/tomato.jpg" class="w-100 product-image">
               </div>
               <div class="card-body">
-                <h5 class="card-title">Organic Tomato</h5>
-                <p style="color: #14d721;">$19.00 <del style="color: grey">$29.00</del></p>
-                <a href="#" class="btn btn-outline-success">Read More</a>
+                <h5 class="card-title Product-name">Organic Tomato</h5>
+                <p style="color: #14d721;" class="Product-price">Price: $19.00 <del style="color: grey">$29.00</del>
+                </p>
+                <a class="btn btn-outline-success card2-footer add-to-cart mx-2"
+                  onclick="addToCart(event, document.querySelector('.Product-name').innerText, parseFloat(document.querySelector('.Product-price').innerText.replace('Price: $', '')))">
+                  <i class="fa-solid fa-cart-shopping" style="color: #14d721;"></i> Add to Cart</a>
               </div>
               <div class="card-footer">
                 <a class="card2-footer mx-2" href="#">
-                  <i class="fa-solid fa-eye" style="color: #14d721;"></i> View Details</a>
-                <a class="card2-footer mx-2" href="#">
-                  <i class="fa-solid fa-cart-shopping" style="color: #14d721;"></i> Add to Cart</a>
+                  <i class="fa-solid fa-eye text-center" style="color: #14d721;"></i> View Details</a>
               </div>
             </div>
           </div>
@@ -264,18 +289,19 @@
           <div class="col-md-3 col-sm-6 product-card fruits fresh">
             <div class="card card2 text-center">
               <div class="image-zoom">
-                <img src="Images/Products/pineapple.jpg" class="w-100">
+                <img src="Images/Products/pineapple.jpg" class="w-100 product-image">
               </div>
               <div class="card-body">
-                <h5 class="card-title">Pineapple</h5>
-                <p style="color: #14d721;">$19.00 <del style="color: grey">$29.00</del></p>
-                <a href="#" class="btn btn-outline-success">Read More</a>
+                <h5 class="card-title Product-name">Pineapple</h5>
+                <p style="color: #14d721;" class="Product-price">Price: $19.00 <del style="color: grey">$29.00</del>
+                </p>
+                <a class="btn btn-outline-success card2-footer add-to-cart mx-2"
+                  onclick="addToCart(event, document.querySelector('.Product-name').innerText, parseFloat(document.querySelector('.Product-price').innerText.replace('Price: $', '')))">
+                  <i class="fa-solid fa-cart-shopping" style="color: #14d721;"></i> Add to Cart</a>
               </div>
               <div class="card-footer">
                 <a class="card2-footer mx-2" href="#">
-                  <i class="fa-solid fa-eye" style="color: #14d721;"></i> View Details</a>
-                <a class="card2-footer mx-2" href="#">
-                  <i class="fa-solid fa-cart-shopping" style="color: #14d721;"></i> Add to Cart</a>
+                  <i class="fa-solid fa-eye text-center" style="color: #14d721;"></i> View Details</a>
               </div>
             </div>
           </div>
@@ -283,18 +309,19 @@
           <div class="col-md-3 col-sm-6 product-card vegetables fresh">
             <div class="card card2 text-center">
               <div class="image-zoom">
-                <img src="Images/Products/potato.jpg" class="w-100">
+                <img src="Images/Products/potato.jpg" class="w-100 product-image">
               </div>
               <div class="card-body">
-                <h5 class="card-title">Potato</h5>
-                <p style="color: #14d721;">$19.00 <del style="color: grey">$29.00</del></p>
-                <a href="#" class="btn btn-outline-success">Read More</a>
+                <h5 class="card-title Product-name">Potato</h5>
+                <p style="color: #14d721;" class="Product-price">Price: $19.00 <del style="color: grey">$29.00</del>
+                </p>
+                <a class="btn btn-outline-success card2-footer add-to-cart mx-2"
+                  onclick="addToCart(event, document.querySelector('.Product-name').innerText, parseFloat(document.querySelector('.Product-price').innerText.replace('Price: $', '')))">
+                  <i class="fa-solid fa-cart-shopping" style="color: #14d721;"></i> Add to Cart</a>
               </div>
               <div class="card-footer">
                 <a class="card2-footer mx-2" href="#">
-                  <i class="fa-solid fa-eye" style="color: #14d721;"></i> View Details</a>
-                <a class="card2-footer mx-2" href="#">
-                  <i class="fa-solid fa-cart-shopping" style="color: #14d721;"></i> Add to Cart</a>
+                  <i class="fa-solid fa-eye text-center" style="color: #14d721;"></i> View Details</a>
               </div>
             </div>
           </div>
@@ -302,18 +329,19 @@
           <div class="col-md-3 col-sm-6 product-card fruits fresh">
             <div class="card card2 text-center">
               <div class="image-zoom">
-                <img src="Images/Products/strawberry.jpg" class="w-100">
+                <img src="Images/Products/strawberry.jpg" class="w-100 product-image">
               </div>
               <div class="card-body">
-                <h5 class="card-title">Strawberry</h5>
-                <p style="color: #14d721;">$19.00 <del style="color: grey">$29.00</del></p>
-                <a href="#" class="btn btn-outline-success">Read More</a>
+                <h5 class="card-title Product-name">Strawberry</h5>
+                <p style="color: #14d721;" class="Product-price">Price: $19.00 <del style="color: grey">$29.00</del>
+                </p>
+                <a class="btn btn-outline-success card2-footer add-to-cart mx-2"
+                  onclick="addToCart(event, document.querySelector('.Product-name').innerText, parseFloat(document.querySelector('.Product-price').innerText.replace('Price: $', '')))">
+                  <i class="fa-solid fa-cart-shopping" style="color: #14d721;"></i> Add to Cart</a>
               </div>
               <div class="card-footer">
                 <a class="card2-footer mx-2" href="#">
-                  <i class="fa-solid fa-eye" style="color: #14d721;"></i> View Details</a>
-                <a class="card2-footer mx-2" href="#">
-                  <i class="fa-solid fa-cart-shopping" style="color: #14d721;"></i> Add to Cart</a>
+                  <i class="fa-solid fa-eye text-center" style="color: #14d721;"></i> View Details</a>
               </div>
             </div>
           </div>
@@ -321,18 +349,19 @@
           <div class="col-md-3 col-sm-6 product-card fruits fresh">
             <div class="card card2 text-center">
               <div class="image-zoom">
-                <img src="Images/Products/tomato2.jpg" class="w-100">
+                <img src="Images/Products/tomato2.jpg" class="w-100 product-image">
               </div>
               <div class="card-body">
-                <h5 class="card-title">Tomato</h5>
-                <p style="color: #14d721;">$19.00 <del style="color: grey">$29.00</del></p>
-                <a href="#" class="btn btn-outline-success">Read More</a>
+                <h5 class="card-title Product-name">Tomato</h5>
+                <p style="color: #14d721;" class="Product-price">Price: $19.00 <del style="color: grey">$29.00</del>
+                </p>
+                <a class="btn btn-outline-success card2-footer add-to-cart mx-2"
+                  onclick="addToCart(event, document.querySelector('.Product-name').innerText, parseFloat(document.querySelector('.Product-price').innerText.replace('Price: $', '')))">
+                  <i class="fa-solid fa-cart-shopping" style="color: #14d721;"></i> Add to Cart</a>
               </div>
               <div class="card-footer">
                 <a class="card2-footer mx-2" href="#">
-                  <i class="fa-solid fa-eye" style="color: #14d721;"></i> View Details</a>
-                <a class="card2-footer mx-2" href="#">
-                  <i class="fa-solid fa-cart-shopping" style="color: #14d721;"></i> Add to Cart</a>
+                  <i class="fa-solid fa-eye text-center" style="color: #14d721;"></i> View Details</a>
               </div>
             </div>
           </div>
@@ -340,38 +369,39 @@
           <div class="col-md-3 col-sm-6 product-card vegetables fresh">
             <div class="card card2 text-center">
               <div class="image-zoom">
-                <img src="Images/Products/Cucumber.jpg" class="w-100">
+                <img src="Images/Products/Cucumber.jpg" class="w-100 product-image">
               </div>
               <div class="card-body">
-                <h5 class="card-title">Cucumber</h5>
-                <p style="color: #14d721;">$19.00 <del style="color: grey">$29.00</del></p>
-                <a href="#" class="btn btn-outline-success">Read More</a>
+                <h5 class="card-title Product-name">Cucumber</h5>
+                <p style="color: #14d721;" class="Product-price">Price: $19.00 <del style="color: grey">$29.00</del>
+                </p>
+                <a class="btn btn-outline-success card2-footer add-to-cart mx-2"
+                  onclick="addToCart(event, this.parentNode.querySelector('.Product-name').innerText, parseFloat(this.parentNode.querySelector('.Product-price').innerText.replace('Price: $', '')))">Add
+                  to Cart</a>
               </div>
               <div class="card-footer">
                 <a class="card2-footer mx-2" href="#">
-                  <i class="fa-solid fa-eye" style="color: #14d721;"></i> View Details</a>
-                <a class="card2-footer mx-2" href="#">
-                  <i class="fa-solid fa-cart-shopping" style="color: #14d721;"></i> Add to Cart</a>
+                  <i class="fa-solid fa-eye text-center" style="color: #14d721;"></i> View Details</a>
               </div>
             </div>
           </div>
 
+
         </div>
       </div>
 
-    </div>
-    <div class="container mt-3">
-      <div class="row mb-5">
-        <div class="col-lg-9 m-auto text-center">
-          <a href="#" class="btn btn-success btn-lg" type="button">Browse More Product</a>
+      <div class="container mt-3">
+        <div class="row mb-5">
+          <div class="col-lg-9 m-auto text-center">
+            <a href="#" class="btn btn-success btn-lg" type="button">Browse More Product</a>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  </div>
-  <!--------------------------->
+    </div>
+    <!--------------------------->
 
-</section><!----------main section---------->
+  </section><!----------main section---------->
 
   <!-- ------------------------Visit Our Firm----------------------------- -->
   <section class="Firm-main">
